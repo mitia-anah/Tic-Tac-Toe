@@ -1,12 +1,20 @@
-import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit'
-import counterReducer from '../features/counter/counterSlice'
+import {
+  configureStore,
+  ThunkAction,
+  Action,
+  combineReducers,
+} from '@reduxjs/toolkit'
 import gameReducer from '../features/Game/gameSlice'
+import timerReducer from '../features/Timer/timerSlice'
 
+export const rootReducer = combineReducers({
+  board: gameReducer,
+  players: gameReducer,
+  winner: gameReducer,
+  timer: timerReducer,
+})
 export const store = configureStore({
-  reducer: {
-    counter: counterReducer,
-    users: gameReducer,
-  },
+  reducer: rootReducer,
 })
 
 export type AppDispatch = typeof store.dispatch
