@@ -3,6 +3,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import { Paths } from './Path/Index'
 import styled from 'styled-components'
 import { Players } from './Pages/Player'
+import { Board } from './Component/Board/Board'
 
 function App() {
   return (
@@ -15,6 +16,9 @@ function App() {
           </Route>
           <Route path={Paths.PLAYERS}>
             <Players />
+          </Route>
+          <Route path={Paths.BOARD}>
+            <Board />
           </Route>
         </Switch>
       </Container>

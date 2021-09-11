@@ -1,24 +1,26 @@
 import { Link } from 'react-router-dom'
 import { Paths } from '../../Path/Index'
-import { useAppDispatch } from '../../app/hooks'
+import { useAppDispatch, useAppSelector } from '../../app/hooks'
 import { useSelector } from 'react-redux'
 import styled from 'styled-components'
 import {
   boardSelector,
   setBoard,
-  playerSelector,
-  AddPlayer,
-  winnerSelector,
   setWinner,
+  winnerSelector,
 } from '../../features/Game/gameSlice'
+import { selectPlayers } from '../../features/Players/PlayersSlice'
 
 export function Board() {
   const board = useSelector(boardSelector)
-  const player = useSelector(playerSelector)
-  const winner = useSelector(winnerSelector)
+  const isWon = useSelector(winnerSelector)
+  const players = useAppSelector(selectPlayers)
   const dispatch = useAppDispatch()
+  const playersTurn = players.firstPlayer
+    ? players.secondPlayer
+    : players.firstPlayer
 
-  function CheckWinner() {
+  function FindWinner() {
     const validMatch = [
       ['0', '1', '2'],
       ['3', '4', '5'],
@@ -33,28 +35,22 @@ export function Board() {
     for (let i = 0; i < validMatch.length; i++) {
       const [a, b, c] = validMatch[i]
       if (board[a] && board[a] === board[b] && board[a] === board[c]) {
-        console.log('strikeThrough')
-        dispatch(setWinner(true))
+        dispatch(setWinner(!isWon))
         return board[a]
       }
     }
     return null
   }
 
-  function handleClick(index) {
-    if (player && !winner) {
-      const newBoard = [...board]
-      if (board[index] === null) {
-        newBoard[index] = player
-        dispatch(setBoard(newBoard))
-        dispatch(AddPlayer(player === 'X' ? 'O' : 'X'))
-      }
-      CheckWinner()
-    }
+  function Move(index) {
+    const newBoard = [...board]
+    if (board[index]) return
+    newBoard[index] = playersTurn
+    dispatch(setBoard(newBoard))
+    FindWinner()
   }
-
   const Box = board.map((box, index) => (
-    <SmallBox onClick={() => handleClick(index)} key={index}>
+    <SmallBox onClick={() => Move(index)} key={index}>
       {box}
     </SmallBox>
   ))
