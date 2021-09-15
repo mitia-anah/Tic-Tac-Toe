@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 <svg width="38" height="70" viewBox="0 0 78 70" fill="none" xmlns="http://www.w3.org/2000/svg">
+=======
+<svg width="20" height="20" viewBox="0 0 78 70" fill="none" xmlns="http://www.w3.org/2000/svg">
+>>>>>>> adds start page
 <line x1="2" y1="-2" x2="97.8246" y2="-2" transform="matrix(0.7413 -0.671174 0.523551 0.851994 2 70.0002)" stroke="#433E3E" stroke-width="6" stroke-linecap="round"/>
 <line x1="2" y1="-2" x2="97.8248" y2="-2" transform="matrix(0.741292 0.671183 -0.52356 0.851989 2.00034 3)" stroke="#433E3E" stroke-width="6" stroke-linecap="round"/>
 </svg>

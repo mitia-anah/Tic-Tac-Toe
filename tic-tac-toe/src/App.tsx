@@ -1,24 +1,31 @@
-import './App.css'
-import { Board } from './Component/Board/Board'
-import { PreStart } from './Component/Players/Prestart'
+import { StartPage } from './Pages/StartPage'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import { Paths } from './Path/Index'
+import styled from 'styled-components'
+import { Players } from './Pages/Player'
 
 function App() {
   return (
     <BrowserRouter>
-      <div className='App'>
+      <Container>
+        <h1>Tic Tac Toe</h1>
         <Switch>
-          <Route path={Paths.DEFAULT}>
-            <PreStart />
+          <Route exact path={Paths.DEFAULT}>
+            <StartPage />
           </Route>
-          <Route path={Paths.BOARD}>
-            <Board />
+          <Route path={Paths.PLAYERS}>
+            <Players />
           </Route>
         </Switch>
-      </div>
+      </Container>
     </BrowserRouter>
   )
 }
+
+const Container = styled.div`
+  max-width: 80%;
+  min-width: 80%;
+  margin: auto;
+`
 
 export default App
