@@ -5,13 +5,15 @@ import {
   combineReducers,
 } from '@reduxjs/toolkit'
 import gameReducer from '../features/Game/gameSlice'
+import playersReducer from '../features/Players/PlayersSlice'
 import timerReducer from '../features/Timer/timerSlice'
 
 export const rootReducer = combineReducers({
   board: gameReducer,
-  players: gameReducer,
   winner: gameReducer,
+  players: playersReducer,
   timer: timerReducer,
+  runTime: timerReducer,
 })
 export const store = configureStore({
   reducer: rootReducer,
