@@ -43,11 +43,14 @@ export function Board() {
   }
 
   function Move(index) {
-    const newBoard = [...board]
-    if (board[index]) return
-    newBoard[index] = playersTurn
-    dispatch(setBoard(newBoard))
-    FindWinner()
+    if (players && !isWon) {
+      const newBoard = [...board]
+      if (board[index] === null) {
+        newBoard[index] = playersTurn
+        dispatch(setBoard(newBoard))
+      }
+      FindWinner()
+    }
   }
   const Box = board.map((box, index) => (
     <SmallBox onClick={() => Move(index)} key={index}>

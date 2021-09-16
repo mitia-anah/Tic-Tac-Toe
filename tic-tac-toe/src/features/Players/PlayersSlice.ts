@@ -9,8 +9,8 @@ export interface PlayerState {
 }
 const initialState: PlayerState = {
   players: {
-    firstPlayer: '',
-    secondPlayer: '',
+    firstPlayer: 'x',
+    secondPlayer: 'o',
   },
 }
 
